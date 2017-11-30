@@ -10,7 +10,8 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./main.obj" \
+"./Source/MCAL/IO_DRIVER/port_drv.obj" \
+"./Source/MCAL/PROG_FRAME/main.obj" \
 "../lnk_msp430fr6989.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibmpu_init.a \
@@ -25,7 +26,11 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include Source/MCAL/IO_DRIVER/subdir_vars.mk
+-include Source/MCAL/PROG_FRAME/subdir_vars.mk
 -include subdir_rules.mk
+-include Source/MCAL/IO_DRIVER/subdir_rules.mk
+-include Source/MCAL/PROG_FRAME/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -155,8 +160,8 @@ Vehicle-Bluetooth-Adapter.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" 
-	-$(RM) "main.d" 
+	-$(RM) "Source\MCAL\IO_DRIVER\port_drv.obj" "Source\MCAL\PROG_FRAME\main.obj" 
+	-$(RM) "Source\MCAL\IO_DRIVER\port_drv.d" "Source\MCAL\PROG_FRAME\main.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

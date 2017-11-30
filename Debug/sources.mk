@@ -112,4 +112,6 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+Source/MCAL/IO_DRIVER \
+Source/MCAL/PROG_FRAME \
 

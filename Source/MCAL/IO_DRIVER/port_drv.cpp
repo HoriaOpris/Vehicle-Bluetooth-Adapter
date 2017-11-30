@@ -1,11 +1,14 @@
-#include <msp430.h> 
-
-/**
- * main.c
+/*
+ * port_drv.cpp
+ *
+ *  Created on: Nov 30, 2017
+ *      Author: Horia Opris
  */
-void main(void)
+#include "port_drv.h"
+#include <msp430.h>
+
+extern void PortDrv_Init(void)
 {
-    volatile int i;
 
     // stop watchdog timer
     WDTCTL = WDTPW | WDTHOLD; /* Stops the watch-dog timer. */
@@ -19,19 +22,19 @@ void main(void)
 
     P1OUT = 0x00;
 
-    // loop forever
+}
 
-    for (;;)
-    {
+extern void PortDrv_Main(void)
+{
+    volatile int i;
 
-        // toggle bit 0 of P1
+    // toggle bit 0 of P1
 
-        P1OUT ^= 0x01;
+    P1OUT ^= 0x01;
 
-        // delay for a while
+    // delay for a while
 
-        for (i = 0; i < 0x6000; i++)
-            ;
+    for (i = 0; i < 0x6000; i++)
+        ;
 
-    }
 }

@@ -1,1 +1,1 @@
-"./main.obj" "../lnk_msp430fr6989.cmd" -llibmpu_init.a -llibmath.a -llibc.a 
+"./Source/MCAL/IO_DRIVER/port_drv.obj" "./Source/MCAL/PROG_FRAME/main.obj" "../lnk_msp430fr6989.cmd" -llibmpu_init.a -llibmath.a -llibc.a 
