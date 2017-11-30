@@ -5,10 +5,12 @@
  */
 void main(void)
 {
-    PortDrv_Init();
+    PortDriver Port;
+
+    Port.Init();
 
     while (true)
     {
-        PortDrv_Main();
+        Port.Run();
     }
 }

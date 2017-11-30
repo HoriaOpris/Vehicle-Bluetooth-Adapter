@@ -7,9 +7,8 @@
 #include "port_drv.h"
 #include <msp430.h>
 
-extern void PortDrv_Init(void)
+void PortDriver::Init(void)
 {
-
     // stop watchdog timer
     WDTCTL = WDTPW | WDTHOLD; /* Stops the watch-dog timer. */
     PMMCTL0 = PMMPW; /* Opens PMM Module. */
@@ -21,10 +20,9 @@ extern void PortDrv_Init(void)
     // intialize bit 0 of P1 to 0
 
     P1OUT = 0x00;
-
 }
 
-extern void PortDrv_Main(void)
+void PortDriver::Run(void)
 {
     volatile int i;
 
@@ -36,5 +34,4 @@ extern void PortDrv_Main(void)
 
     for (i = 0; i < 0x6000; i++)
         ;
-
 }
