@@ -16,11 +16,17 @@ enum PinDirection
     DIR_OUTPUT
 };
 
+enum PinOutput
+{
+    OUT_HIGH,
+    OUT_LOW
+};
+
 class PortDriver
 {
 public:
     void Init(void);
-    void Run(void);
+    void Output(uint8_t pin, enum PinOutput out);
     void Configure(uint8_t pin, enum PinDirection dir);
 
 private:

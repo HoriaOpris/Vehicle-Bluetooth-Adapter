@@ -17,11 +17,11 @@ void PortDriver::Configure(uint8_t pin, enum PinDirection dir)
     switch (dir)
     {
         case DIR_INPUT:
-            P1DIR &= ~pin;
+            P1DIR &= ~(1 << pin);
             break;
 
         case DIR_OUTPUT:
-            P1DIR |= pin;
+            P1DIR |= (1 << pin);
             break;
 
         default:
@@ -29,16 +29,22 @@ void PortDriver::Configure(uint8_t pin, enum PinDirection dir)
     }
 }
 
-void PortDriver::Run(void)
+void PortDriver::Output(uint8_t pin, enum PinOutput out)
 {
     volatile int i;
 
-// toggle bit 0 of P1
+    switch (out)
+    {
+        case OUT_HIGH:
+            P1OUT |= (1 << pin);
+            break;
 
-    P1OUT ^= 0x01;
+        case OUT_LOW:
+            P1OUT &= ~(1 << pin);
+            break;
+    }
 
 // delay for a while
-
     for (i = 0; i < 0x6000; i++)
         ;
 }
