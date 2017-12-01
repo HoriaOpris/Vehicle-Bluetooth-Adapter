@@ -39,6 +39,7 @@ class PortDriver
 private:
     uint8_t PortDrv_pin;
 
+    uint8_t BitForCurrentPin(void);
 public:
     PortDriver(enum PinNumber pin);
     void Output(enum PinOutput out);
