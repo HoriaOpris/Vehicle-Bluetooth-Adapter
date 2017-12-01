@@ -10,24 +10,34 @@
 void PortDriver::Init(void)
 {
     StopWatchdog();
+}
 
-    // set up bit 0 of P1 as output
-    P1DIR = 0x01;
+void PortDriver::Configure(uint8_t pin, enum PinDirection dir)
+{
+    switch (dir)
+    {
+        case DIR_INPUT:
+            P1DIR &= ~pin;
+            break;
 
-    // intialize bit 0 of P1 to 0
+        case DIR_OUTPUT:
+            P1DIR |= pin;
+            break;
 
-    P1OUT = 0x00;
+        default:
+            break;
+    }
 }
 
 void PortDriver::Run(void)
 {
     volatile int i;
 
-    // toggle bit 0 of P1
+// toggle bit 0 of P1
 
     P1OUT ^= 0x01;
 
-    // delay for a while
+// delay for a while
 
     for (i = 0; i < 0x6000; i++)
         ;

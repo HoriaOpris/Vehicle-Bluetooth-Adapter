@@ -8,6 +8,7 @@ void main(void)
     PortDriver Port;
 
     Port.Init();
+    Port.Configure(((uint8_t) 0x01U), DIR_OUTPUT);
 
     while (true)
     {
