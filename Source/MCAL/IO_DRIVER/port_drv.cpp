@@ -39,8 +39,6 @@ void PortDriver::Configure(enum PinDirection dir)
 
 void PortDriver::Output(enum PinOutput out)
 {
-    volatile int i;
-
     switch (out)
     {
         case OUT_HIGH:
@@ -51,8 +49,4 @@ void PortDriver::Output(enum PinOutput out)
             P1OUT &= ~(1 << PortDrv_pin);
             break;
     }
-
-// delay for a while
-    for (i = 0; i < 0x6000; i++)
-        ;
 }
