@@ -48,5 +48,9 @@ void PortDriver::Output(enum PinOutput out)
         case OUT_LOW:
             P1OUT &= ~(1 << PortDrv_pin);
             break;
+
+        case OUT_TOGGLE:
+            P1OUT ^= (1 << PortDrv_pin);
+            break;
     }
 }

@@ -30,7 +30,8 @@ enum PinDirection
 enum PinOutput
 {
     OUT_HIGH,
-    OUT_LOW
+    OUT_LOW,
+    OUT_TOGGLE
 };
 
 class PortDriver

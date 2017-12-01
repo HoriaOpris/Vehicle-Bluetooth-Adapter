@@ -14,23 +14,13 @@ void main(void)
 
     while (true)
     {
-        Pin_0.Output(OUT_LOW);
-        Pin_6.Output(OUT_LOW);
+        Pin_0.Output(OUT_TOGGLE);
+        Pin_6.Output(OUT_TOGGLE);
 
         // delay for a while
         for (volatile int i = 0; i < 0xF000; i++)
         {
             ;
         }
-
-        Pin_0.Output(OUT_HIGH);
-        Pin_6.Output(OUT_HIGH);
-
-        // delay for a while
-        for (volatile int i = 0; i < 0xF000; i++)
-        {
-            ;
-        }
-
     }
 }
