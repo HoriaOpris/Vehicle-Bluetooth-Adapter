@@ -5,8 +5,8 @@
  */
 void main(void)
 {
-    PortDriver Pin_0(0x00);
-    PortDriver Pin_6(0x06);
+    PortDriver Pin_0(PIN_0);
+    PortDriver Pin_6(PIN_6);
 
     Pin_0.Init();
     Pin_6.Init();

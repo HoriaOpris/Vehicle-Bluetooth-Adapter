@@ -7,9 +7,17 @@
 #include "port_drv.h"
 #include <msp430.h>
 
-PortDriver::PortDriver(uint8_t pin)
+PortDriver::PortDriver(enum PinNumber pin)
 {
-    PortDrv_pin = pin;
+    if ((pin >= PIN_0) && (pin <= PIN_7))
+    {
+        PortDrv_pin = (uint8_t) pin;
+    }
+    else
+    {
+        /* TODO @Horia: Error hook */
+    }
+
 }
 
 void PortDriver::Init(void)

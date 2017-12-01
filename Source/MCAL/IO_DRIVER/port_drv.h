@@ -10,6 +10,17 @@
 
 #include <stdint.h>
 
+enum PinNumber
+{
+    PIN_0 = 0,
+    PIN_1,
+    PIN_2,
+    PIN_3,
+    PIN_4,
+    PIN_5,
+    PIN_6,
+    PIN_7,
+};
 enum PinDirection
 {
     DIR_INPUT,
@@ -25,7 +36,7 @@ enum PinOutput
 class PortDriver
 {
 public:
-    PortDriver(uint8_t pin);
+    PortDriver(enum PinNumber pin);
     void Init(void);
     void Output(enum PinOutput out);
     void Configure(enum PinDirection dir);
