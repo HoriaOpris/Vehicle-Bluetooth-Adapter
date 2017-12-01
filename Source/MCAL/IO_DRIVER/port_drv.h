@@ -13,6 +13,9 @@ class PortDriver
 public:
     void Init(void);
     void Run(void);
+
+private:
+    void StopWatchdog(void);
 };
 
 #endif /* SOURCE_MCAL_PORT_DRV_H_ */
