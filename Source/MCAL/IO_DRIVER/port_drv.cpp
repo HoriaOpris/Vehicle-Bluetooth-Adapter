@@ -7,21 +7,26 @@
 #include "port_drv.h"
 #include <msp430.h>
 
+PortDriver::PortDriver(uint8_t pin)
+{
+    PortDrv_pin = pin;
+}
+
 void PortDriver::Init(void)
 {
     StopWatchdog();
 }
 
-void PortDriver::Configure(uint8_t pin, enum PinDirection dir)
+void PortDriver::Configure(enum PinDirection dir)
 {
     switch (dir)
     {
         case DIR_INPUT:
-            P1DIR &= ~(1 << pin);
+            P1DIR &= ~(1 << PortDrv_pin);
             break;
 
         case DIR_OUTPUT:
-            P1DIR |= (1 << pin);
+            P1DIR |= (1 << PortDrv_pin);
             break;
 
         default:
@@ -29,18 +34,18 @@ void PortDriver::Configure(uint8_t pin, enum PinDirection dir)
     }
 }
 
-void PortDriver::Output(uint8_t pin, enum PinOutput out)
+void PortDriver::Output(enum PinOutput out)
 {
     volatile int i;
 
     switch (out)
     {
         case OUT_HIGH:
-            P1OUT |= (1 << pin);
+            P1OUT |= (1 << PortDrv_pin);
             break;
 
         case OUT_LOW:
-            P1OUT &= ~(1 << pin);
+            P1OUT &= ~(1 << PortDrv_pin);
             break;
     }
 
