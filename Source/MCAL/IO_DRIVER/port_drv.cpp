@@ -20,11 +20,6 @@ PortDriver::PortDriver(enum PinNumber pin)
 
 }
 
-void PortDriver::Init(void)
-{
-    StopWatchdog();
-}
-
 void PortDriver::Configure(enum PinDirection dir)
 {
     switch (dir)
@@ -60,11 +55,4 @@ void PortDriver::Output(enum PinOutput out)
 // delay for a while
     for (i = 0; i < 0x6000; i++)
         ;
-}
-
-void PortDriver::StopWatchdog(void)
-{
-    WDTCTL = WDTPW | WDTHOLD; /* Stops the watch-dog timer. */
-    PMMCTL0 = PMMPW; /* Opens PMM Module. */
-    PM5CTL0 &= ~LOCKLPM5; /* Clears locked Input output pins. */
 }

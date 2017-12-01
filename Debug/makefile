@@ -12,6 +12,8 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./Source/MCAL/IO_DRIVER/port_drv.obj" \
 "./Source/MCAL/PROG_FRAME/main.obj" \
+"./Source/MCAL/UC_DRIVER/watchdog_drv.obj" \
+"./Source/SERV/SYSTEM_SERVICE/det_serv.obj" \
 "../lnk_msp430fr6989.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibmpu_init.a \
@@ -28,9 +30,13 @@ RMDIR := RMDIR /S/Q
 -include subdir_vars.mk
 -include Source/MCAL/IO_DRIVER/subdir_vars.mk
 -include Source/MCAL/PROG_FRAME/subdir_vars.mk
+-include Source/MCAL/UC_DRIVER/subdir_vars.mk
+-include Source/SERV/SYSTEM_SERVICE/subdir_vars.mk
 -include subdir_rules.mk
 -include Source/MCAL/IO_DRIVER/subdir_rules.mk
 -include Source/MCAL/PROG_FRAME/subdir_rules.mk
+-include Source/MCAL/UC_DRIVER/subdir_rules.mk
+-include Source/SERV/SYSTEM_SERVICE/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -160,8 +166,8 @@ Vehicle-Bluetooth-Adapter.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Source\MCAL\IO_DRIVER\port_drv.obj" "Source\MCAL\PROG_FRAME\main.obj" 
-	-$(RM) "Source\MCAL\IO_DRIVER\port_drv.d" "Source\MCAL\PROG_FRAME\main.d" 
+	-$(RM) "Source\MCAL\IO_DRIVER\port_drv.obj" "Source\MCAL\PROG_FRAME\main.obj" "Source\MCAL\UC_DRIVER\watchdog_drv.obj" "Source\SERV\SYSTEM_SERVICE\det_serv.obj" 
+	-$(RM) "Source\MCAL\IO_DRIVER\port_drv.d" "Source\MCAL\PROG_FRAME\main.d" "Source\MCAL\UC_DRIVER\watchdog_drv.d" "Source\SERV\SYSTEM_SERVICE\det_serv.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

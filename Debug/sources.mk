@@ -114,4 +114,6 @@ SUBDIRS := \
 . \
 Source/MCAL/IO_DRIVER \
 Source/MCAL/PROG_FRAME \
+Source/MCAL/UC_DRIVER \
+Source/SERV/SYSTEM_SERVICE \
 

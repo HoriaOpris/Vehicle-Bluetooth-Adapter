@@ -35,16 +35,13 @@ enum PinOutput
 
 class PortDriver
 {
-public:
-    PortDriver(enum PinNumber pin);
-    void Init(void);
-    void Output(enum PinOutput out);
-    void Configure(enum PinDirection dir);
-
 private:
     uint8_t PortDrv_pin;
 
-    void StopWatchdog(void);
+public:
+    PortDriver(enum PinNumber pin);
+    void Output(enum PinOutput out);
+    void Configure(enum PinDirection dir);
 };
 
 #endif /* SOURCE_MCAL_PORT_DRV_H_ */
