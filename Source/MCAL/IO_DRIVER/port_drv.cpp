@@ -58,15 +58,15 @@ void PortDriver::Output(enum PinOutput out)
     }
 }
 
-PinInput PortDriver::Input(void)
+bool PortDriver::InputIsHigh(void)
 {
     if ((P1IN & CurrentPin()) == 0)
     {
-        return IN_HIGH;
+        return true;
     }
     else
     {
-        return IN_LOW;
+        return false;
     }
 }
 

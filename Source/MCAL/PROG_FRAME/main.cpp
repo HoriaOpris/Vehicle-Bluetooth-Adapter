@@ -18,7 +18,7 @@ void main(void)
     {
         Pin_0.Output(OUT_TOGGLE);
 
-        if (Pin_2.Input() == IN_HIGH)
+        if (Pin_2.InputIsHigh())
         {
             Pin_6.Output(OUT_TOGGLE);
         }
