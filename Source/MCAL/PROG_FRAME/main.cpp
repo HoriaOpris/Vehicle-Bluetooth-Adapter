@@ -7,16 +7,11 @@ void main(void)
     WatchDog watchdog;
     watchdog.StopWatchdog();
 
-    PortDriver Pin_0(PIN_0);
-    PortDriver Pin_6(PIN_6);
-    PortDriver Pin_2(PIN_2);
-
-    Pin_0.Configure(DIR_OUTPUT);
-    Pin_6.Configure(DIR_OUTPUT);
-    Pin_2.Configure(DIR_INPUT);
+    PortDriver Pin_0(PIN_0, DIR_OUTPUT);
+    PortDriver Pin_2(PIN_2, DIR_INPUT);
+    PortDriver Pin_6(PIN_6, DIR_OUTPUT);
 
     //UartDrv uart;
-
     //uart.Init();
 
     while (true)

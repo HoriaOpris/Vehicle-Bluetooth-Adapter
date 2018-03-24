@@ -7,17 +7,18 @@
 #include "port_drv.h"
 #include <msp430.h>
 
-PortDriver::PortDriver(enum PinNumber pin)
+PortDriver::PortDriver(enum PinNumber pin, enum PinDirection dir)
 {
     if ((pin >= PIN_0) && (pin <= PIN_7))
     {
         PortDrv_pin = (uint8_t) pin;
+
+        Configure(dir);
     }
     else
     {
         /* TODO @Horia: Error hook */
     }
-
 }
 
 void PortDriver::Configure(enum PinDirection dir)
