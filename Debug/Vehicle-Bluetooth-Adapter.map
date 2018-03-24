@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v17.9.0                     
 ******************************************************************************
->> Linked Fri Dec  1 18:47:24 2017
+>> Linked Sat Mar 24 18:40:54 2018
 
 OUTPUT FILE NAME:   <Vehicle-Bluetooth-Adapter.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs_mpu"  address: 00004400
@@ -79,7 +79,7 @@ MEMORY CONFIGURATION
   INT53                 0000fffa   00000002  00000002  00000000  RWIX
   INT54                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FRAM2                 00010000   00014000  00000138  00013ec8  RWIX
+  FRAM2                 00010000   00014000  0000017a  00013e86  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -230,51 +230,48 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    00000138     
-                  00010000    0000007c     main.obj (.text:main)
-                  0001007c    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
-                  000100a8    0000002a     port_drv.obj (.text:_ZN10PortDriver6OutputE9PinOutput)
-                  000100d2    0000001c     port_drv.obj (.text:_ZN10PortDriver9ConfigureE12PinDirection)
-                  000100ee    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
-                  00010100    0000000e     port_drv.obj (.text:_ZN10PortDriverC1E9PinNumber)
-                  0001010e    0000000c     port_drv.obj (.text:_ZN10PortDriver16BitForCurrentPinEv)
-                  0001011a    0000000a     uart_drv.obj (.text:_ZN7UartDrv4InitEv)
-                  00010124    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
-                  0001012e    00000006                            : exit.obj (.text:abort)
-                  00010134    00000004                            : pre_init.obj (.text:_system_pre_init)
+.text      0    00010000    0000017a     
+                  00010000    00000098     main.obj (.text:main)
+                  00010098    00000032     port_drv.obj (.text:_ZN10PortDriver9ConfigureE12PinDirection)
+                  000100ca    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
+                  000100f6    0000002a     port_drv.obj (.text:_ZN10PortDriver6OutputE9PinOutput)
+                  00010120    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
+                  00010132    00000010     port_drv.obj (.text:_ZN10PortDriver5InputEv)
+                  00010142    0000000e     port_drv.obj (.text:_ZN10PortDriverC1E9PinNumber)
+                  00010150    0000000c     port_drv.obj (.text:_ZN10PortDriver16BitForCurrentPinEv)
+                  0001015c    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
+                  00010166    0000000a                            : lsr16.obj (.text)
+                  00010170    00000006                            : exit.obj (.text:abort)
+                  00010176    00000004                            : pre_init.obj (.text:_system_pre_init)
 
 MODULE SUMMARY
 
        Module             code   ro data   rw data
        ------             ----   -------   -------
-    .\Source\MCAL\COM_DRIVER\
-       uart_drv.obj       10     0         0      
-    +--+------------------+------+---------+---------+
-       Total:             10     0         0      
-                                                  
     .\Source\MCAL\IO_DRIVER\
-       port_drv.obj       96     0         0      
+       port_drv.obj       134    0         0      
     +--+------------------+------+---------+---------+
-       Total:             96     0         0      
+       Total:             134    0         0      
                                                   
     .\Source\MCAL\PROG_FRAME\
-       main.obj           124    0         0      
+       main.obj           152    0         0      
     +--+------------------+------+---------+---------+
-       Total:             124    0         0      
+       Total:             152    0         0      
                                                   
     .\Source\MCAL\UC_DRIVER\
        watchdog_drv.obj   18     0         0      
     +--+------------------+------+---------+---------+
        Total:             18     0         0      
                                                   
-    C:\ti\ccs730\ccsv7\ccs_base\msp430\lib\FR59xx\MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib
+    C:\ti\ccsv7\ccs_base\msp430\lib\FR59xx\MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib
        mpu_init.o         44     0         0      
     +--+------------------+------+---------+---------+
        Total:             44     0         0      
                                                   
-    C:\ti\ccs730\ccsv7\tools\compiler\ti-cgt-msp430_17.9.0.STS\lib\rts430x_lc_rd_eabi.lib
+    C:\ti\ccsv7\tools\compiler\ti-cgt-msp430_17.9.0.STS\lib\rts430x_lc_rd_eabi.lib
        boot.obj           24     2         0      
        lsl16.obj          10     0         0      
+       lsr16.obj          10     0         0      
        isr_trap.obj       8      0         0      
        exit.obj           6      0         0      
        pre_init.obj       4      0         0      
@@ -307,11 +304,11 @@ MODULE SUMMARY
        int53.obj          0      2         0      
        int54.obj          0      2         0      
     +--+------------------+------+---------+---------+
-       Total:             52     58        0      
+       Total:             62     58        0      
                                                   
        Stack:             0      0         160    
     +--+------------------+------+---------+---------+
-       Grand Total:       344    58        160    
+       Grand Total:       410    58        160    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -575,7 +572,7 @@ address   name
 000009ce  AESAXIN_L                               
 000004be  BCD2BIN                                 
 000004bc  BIN2BCD                                 
-0001012e  C$$EXIT                                 
+00010170  C$$EXIT                                 
 0000043e  CAPTIO0CTL                              
 0000043f  CAPTIO0CTL_H                            
 0000043e  CAPTIO0CTL_L                            
@@ -1713,13 +1710,13 @@ address   name
 0000015c  WDTCTL                                  
 0000015d  WDTCTL_H                                
 0000015c  WDTCTL_L                                
-0001010e  _ZN10PortDriver16BitForCurrentPinEv     
-000100a8  _ZN10PortDriver6OutputE9PinOutput       
-000100d2  _ZN10PortDriver9ConfigureE12PinDirection
-00010100  _ZN10PortDriverC1E9PinNumber            
-00010100  _ZN10PortDriverC2E9PinNumber            
-0001011a  _ZN7UartDrv4InitEv                      
-000100ee  _ZN8WatchDog12StopWatchdogEv            
+00010150  _ZN10PortDriver16BitForCurrentPinEv     
+00010132  _ZN10PortDriver5InputEv                 
+000100f6  _ZN10PortDriver6OutputE9PinOutput       
+00010098  _ZN10PortDriver9ConfigureE12PinDirection
+00010142  _ZN10PortDriverC1E9PinNumber            
+00010142  _ZN10PortDriverC2E9PinNumber            
+00010120  _ZN8WatchDog12StopWatchdogEv            
 00002400  __STACK_END                             
 000000a0  __STACK_SIZE                            
 00004418  __TI_ISR_TRAP                           
@@ -1756,13 +1753,14 @@ ffffffff  __TI_prof_data_size
 ffffffff  __TI_prof_data_start                    
 ffffffff  __c_args__                              
 00000001  __mpu_enable                            
-0001007c  __mpu_init                              
-00010124  __mspabi_slli                           
+000100ca  __mpu_init                              
+0001015c  __mspabi_slli                           
+00010166  __mspabi_srli                           
 00004400  _c_int00_noinit_noargs_mpu              
 0000fffe  _reset_vector                           
 00002360  _stack                                  
-00010134  _system_pre_init                        
-0001012e  abort                                   
+00010176  _system_pre_init                        
+00010170  abort                                   
 00004400  fram_ipe_end                            
 00004400  fram_ipe_start                          
 00004400  fram_rw_start                           
@@ -3216,21 +3214,22 @@ address   name
 0000fffc  __TI_int54                              
 0000fffe  _reset_vector                           
 00010000  main                                    
-0001007c  __mpu_init                              
-000100a8  _ZN10PortDriver6OutputE9PinOutput       
-000100d2  _ZN10PortDriver9ConfigureE12PinDirection
-000100ee  _ZN8WatchDog12StopWatchdogEv            
-00010100  _ZN10PortDriverC1E9PinNumber            
-00010100  _ZN10PortDriverC2E9PinNumber            
-0001010e  _ZN10PortDriver16BitForCurrentPinEv     
-0001011a  _ZN7UartDrv4InitEv                      
-00010124  __mspabi_slli                           
-0001012e  C$$EXIT                                 
-0001012e  abort                                   
-00010134  _system_pre_init                        
+00010098  _ZN10PortDriver9ConfigureE12PinDirection
+000100ca  __mpu_init                              
+000100f6  _ZN10PortDriver6OutputE9PinOutput       
+00010120  _ZN8WatchDog12StopWatchdogEv            
+00010132  _ZN10PortDriver5InputEv                 
+00010142  _ZN10PortDriverC1E9PinNumber            
+00010142  _ZN10PortDriverC2E9PinNumber            
+00010150  _ZN10PortDriver16BitForCurrentPinEv     
+0001015c  __mspabi_slli                           
+00010166  __mspabi_srli                           
+00010170  C$$EXIT                                 
+00010170  abort                                   
+00010176  _system_pre_init                        
 ffffffff  __TI_pprof_out_hndl                     
 ffffffff  __TI_prof_data_size                     
 ffffffff  __TI_prof_data_start                    
 ffffffff  __c_args__                              
 
-[1454 symbols]
+[1455 symbols]

@@ -24,16 +24,18 @@ void PortDriver::Configure(enum PinDirection dir)
 {
     switch (dir)
     {
-        case DIR_INPUT:
-            P1DIR &= ~BitForCurrentPin();
-            break;
+    case DIR_INPUT:
+        P1DIR &= ~BitForCurrentPin();
+        P1OUT |= BitForCurrentPin();
+        P1REN |= BitForCurrentPin();
+        break;
 
-        case DIR_OUTPUT:
-            P1DIR |= BitForCurrentPin();
-            break;
+    case DIR_OUTPUT:
+        P1DIR |= BitForCurrentPin();
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 }
 
@@ -41,17 +43,29 @@ void PortDriver::Output(enum PinOutput out)
 {
     switch (out)
     {
-        case OUT_HIGH:
-            P1OUT |= BitForCurrentPin();
-            break;
+    case OUT_HIGH:
+        P1OUT |= BitForCurrentPin();
+        break;
 
-        case OUT_LOW:
-            P1OUT &= ~BitForCurrentPin();
-            break;
+    case OUT_LOW:
+        P1OUT &= ~BitForCurrentPin();
+        break;
 
-        case OUT_TOGGLE:
-            P1OUT ^= BitForCurrentPin();
-            break;
+    case OUT_TOGGLE:
+        P1OUT ^= BitForCurrentPin();
+        break;
+    }
+}
+
+PinInput PortDriver::Input(void)
+{
+    if ((P1IN & (1 << PortDrv_pin)) == 0)
+    {
+        return IN_HIGH;
+    }
+    else
+    {
+        return IN_LOW;
     }
 }
 
