@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v17.9.0                     
 ******************************************************************************
->> Linked Sat Mar 24 18:46:52 2018
+>> Linked Sat Mar 24 18:57:24 2018
 
 OUTPUT FILE NAME:   <Vehicle-Bluetooth-Adapter.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs_mpu"  address: 00004400
@@ -79,7 +79,7 @@ MEMORY CONFIGURATION
   INT53                 0000fffa   00000002  00000002  00000000  RWIX
   INT54                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FRAM2                 00010000   00014000  00000168  00013e98  RWIX
+  FRAM2                 00010000   00014000  00000162  00013e9e  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -230,28 +230,27 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    00000168     
+.text      0    00010000    00000162     
                   00010000    0000007a     main.obj (.text:main)
                   0001007a    00000032     port_drv.obj (.text:_ZN10PortDriver9ConfigureE12PinDirection)
                   000100ac    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
                   000100d8    0000002a     port_drv.obj (.text:_ZN10PortDriver6OutputE9PinOutput)
                   00010102    0000001a     port_drv.obj (.text:_ZN10PortDriverC1E9PinNumber12PinDirection)
-                  0001011c    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
-                  0001012e    00000010     port_drv.obj (.text:_ZN10PortDriver5InputEv)
-                  0001013e    0000000c     port_drv.obj (.text:_ZN10PortDriver16BitForCurrentPinEv)
-                  0001014a    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
-                  00010154    0000000a                            : lsr16.obj (.text)
-                  0001015e    00000006                            : exit.obj (.text:abort)
-                  00010164    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  0001011c    00000014     port_drv.obj (.text:_ZN10PortDriver5InputEv)
+                  00010130    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
+                  00010142    0000000c     port_drv.obj (.text:_ZN10PortDriver16BitForCurrentPinEv)
+                  0001014e    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
+                  00010158    00000006                            : exit.obj (.text:abort)
+                  0001015e    00000004                            : pre_init.obj (.text:_system_pre_init)
 
 MODULE SUMMARY
 
        Module             code   ro data   rw data
        ------             ----   -------   -------
     .\Source\MCAL\IO_DRIVER\
-       port_drv.obj       146    0         0      
+       port_drv.obj       150    0         0      
     +--+------------------+------+---------+---------+
-       Total:             146    0         0      
+       Total:             150    0         0      
                                                   
     .\Source\MCAL\PROG_FRAME\
        main.obj           122    0         0      
@@ -271,7 +270,6 @@ MODULE SUMMARY
     C:\ti\ccsv7\tools\compiler\ti-cgt-msp430_17.9.0.STS\lib\rts430x_lc_rd_eabi.lib
        boot.obj           24     2         0      
        lsl16.obj          10     0         0      
-       lsr16.obj          10     0         0      
        isr_trap.obj       8      0         0      
        exit.obj           6      0         0      
        pre_init.obj       4      0         0      
@@ -304,11 +302,11 @@ MODULE SUMMARY
        int53.obj          0      2         0      
        int54.obj          0      2         0      
     +--+------------------+------+---------+---------+
-       Total:             62     58        0      
+       Total:             52     58        0      
                                                   
        Stack:             0      0         160    
     +--+------------------+------+---------+---------+
-       Grand Total:       392    58        160    
+       Grand Total:       386    58        160    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -572,7 +570,7 @@ address   name
 000009ce  AESAXIN_L                                 
 000004be  BCD2BIN                                   
 000004bc  BIN2BCD                                   
-0001015e  C$$EXIT                                   
+00010158  C$$EXIT                                   
 0000043e  CAPTIO0CTL                                
 0000043f  CAPTIO0CTL_H                              
 0000043e  CAPTIO0CTL_L                              
@@ -1710,13 +1708,13 @@ address   name
 0000015c  WDTCTL                                    
 0000015d  WDTCTL_H                                  
 0000015c  WDTCTL_L                                  
-0001013e  _ZN10PortDriver16BitForCurrentPinEv       
-0001012e  _ZN10PortDriver5InputEv                   
+00010142  _ZN10PortDriver16BitForCurrentPinEv       
+0001011c  _ZN10PortDriver5InputEv                   
 000100d8  _ZN10PortDriver6OutputE9PinOutput         
 0001007a  _ZN10PortDriver9ConfigureE12PinDirection  
 00010102  _ZN10PortDriverC1E9PinNumber12PinDirection
 00010102  _ZN10PortDriverC2E9PinNumber12PinDirection
-0001011c  _ZN8WatchDog12StopWatchdogEv              
+00010130  _ZN8WatchDog12StopWatchdogEv              
 00002400  __STACK_END                               
 000000a0  __STACK_SIZE                              
 00004418  __TI_ISR_TRAP                             
@@ -1754,13 +1752,12 @@ ffffffff  __TI_prof_data_start
 ffffffff  __c_args__                                
 00000001  __mpu_enable                              
 000100ac  __mpu_init                                
-0001014a  __mspabi_slli                             
-00010154  __mspabi_srli                             
+0001014e  __mspabi_slli                             
 00004400  _c_int00_noinit_noargs_mpu                
 0000fffe  _reset_vector                             
 00002360  _stack                                    
-00010164  _system_pre_init                          
-0001015e  abort                                     
+0001015e  _system_pre_init                          
+00010158  abort                                     
 00004400  fram_ipe_end                              
 00004400  fram_ipe_start                            
 00004400  fram_rw_start                             
@@ -3219,17 +3216,16 @@ address   name
 000100d8  _ZN10PortDriver6OutputE9PinOutput         
 00010102  _ZN10PortDriverC1E9PinNumber12PinDirection
 00010102  _ZN10PortDriverC2E9PinNumber12PinDirection
-0001011c  _ZN8WatchDog12StopWatchdogEv              
-0001012e  _ZN10PortDriver5InputEv                   
-0001013e  _ZN10PortDriver16BitForCurrentPinEv       
-0001014a  __mspabi_slli                             
-00010154  __mspabi_srli                             
-0001015e  C$$EXIT                                   
-0001015e  abort                                     
-00010164  _system_pre_init                          
+0001011c  _ZN10PortDriver5InputEv                   
+00010130  _ZN8WatchDog12StopWatchdogEv              
+00010142  _ZN10PortDriver16BitForCurrentPinEv       
+0001014e  __mspabi_slli                             
+00010158  C$$EXIT                                   
+00010158  abort                                     
+0001015e  _system_pre_init                          
 ffffffff  __TI_pprof_out_hndl                       
 ffffffff  __TI_prof_data_size                       
 ffffffff  __TI_prof_data_start                      
 ffffffff  __c_args__                                
 
-[1455 symbols]
+[1454 symbols]

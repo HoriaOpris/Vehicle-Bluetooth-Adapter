@@ -34,7 +34,7 @@ class PortDriver
 private:
     uint8_t PortDrv_pin;
 
-    uint8_t BitForCurrentPin(void);
+    uint8_t CurrentPin(void);
     void Configure(enum PinDirection dir);
 public:
     PortDriver(enum PinNumber pin, enum PinDirection dir);
