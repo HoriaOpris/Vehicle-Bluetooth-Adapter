@@ -2,6 +2,22 @@
 #include "../UC_DRIVER/watchdog_drv.h"
 #include "../COM_DRIVER/uart_drv.h"
 
+#include <msp430.h>
+
+static void timerA_cfg(void)
+{
+    // CLock config to ACLK
+    TA0CTL |= 1 << 8;
+    TA0CTL &= ~(1 << 9);
+
+    //Mode control set to count up to TA0CCR0
+    TA0CTL |= 1 << 4;
+    TA0CTL &= ~(1 << 5);
+
+    // Value to count up to
+    TA0CCR0 = 5000;
+}
+
 void main(void)
 {
     WatchDog watchdog;
@@ -14,19 +30,11 @@ void main(void)
     //UartDrv uart;
     //uart.Init();
 
+    timerA_cfg();
+
     while (true)
     {
-        Pin_0.Output(OUT_TOGGLE);
-
-        if (Pin_2.InputIsHigh())
-        {
-            Pin_6.Output(OUT_TOGGLE);
-        }
-
-        // delay for a while
-        for (volatile int i = 0; i < 0xF000; i++)
-        {
-            ;
-        }
+        if (TA0R == 4950)
+            Pin_0.Output(OUT_TOGGLE);
     }
 }
