@@ -1,1 +1,1 @@
-"./Source/MCAL/COM_DRIVER/uart_drv.obj" "./Source/MCAL/IO_DRIVER/port_drv.obj" "./Source/MCAL/PROG_FRAME/main.obj" "./Source/MCAL/UC_DRIVER/watchdog_drv.obj" "./Source/SERV/SYSTEM_SERVICE/det_serv.obj" "../lnk_msp430fr6989.cmd" -llibmpu_init.a -llibmath.a -llibc.a 
+"./Source/KERNEL/kernel.obj" "./Source/MCAL/COM_DRIVER/uart_drv.obj" "./Source/MCAL/IO_DRIVER/port_drv.obj" "./Source/MCAL/PROG_FRAME/main.obj" "./Source/MCAL/UC_DRIVER/watchdog_drv.obj" "./Source/SERV/SYSTEM_SERVICE/det_serv.obj" "../lnk_msp430fr6989.cmd" -llibmpu_init.a -llibmath.a -llibc.a 

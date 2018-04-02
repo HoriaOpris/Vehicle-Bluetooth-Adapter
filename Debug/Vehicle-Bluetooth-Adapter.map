@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v17.9.0                     
 ******************************************************************************
->> Linked Mon Apr  2 21:02:27 2018
+>> Linked Mon Apr  2 21:34:21 2018
 
 OUTPUT FILE NAME:   <Vehicle-Bluetooth-Adapter.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs_mpu"  address: 00004400
@@ -88,7 +88,7 @@ SECTION ALLOCATION MAP
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
 .data      0    00001c00    00000020     UNINITIALIZED
-                  00001c00    00000020     main.obj (.data:rtos)
+                  00001c00    00000020     kernel.obj (.data:rtos)
 
 .TI.persistent 
 *          0    00004400    00000000     UNINITIALIZED
@@ -122,16 +122,16 @@ section   page    origin      length       input sections
 
 .init_array 
 *          0    00004446    00000004     
-                  00004446    00000004     main.obj (.init_array)
+                  00004446    00000004     kernel.obj (.init_array)
 
 .text:_isr 
 *          0    00004400    00000046     
                   00004400    00000020     rts430x_lc_rd_eabi.lib : boot.obj (.text:_isr:_c_int00_noargs_mpu)
-                  00004420    0000001e     main.obj (.text:_isr:_Z7Timer_Av)
+                  00004420    0000001e     kernel.obj (.text:_isr:_Z7Timer_Av)
                   0000443e    00000008     rts430x_lc_rd_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
 
 .bss       0    00001c20    00000001     UNINITIALIZED
-                  00001c20    00000001     main.obj (.bss:Pin_0)
+                  00001c20    00000001     kernel.obj (.bss:Pin_0)
 
 .stack     0    00002360    000000a0     UNINITIALIZED
                   00002360    00000004     rts430x_lc_rd_eabi.lib : boot.obj (.stack)
@@ -206,7 +206,7 @@ TIMER0_A1
 
 TIMER0_A0 
 *          0    0000ffe8    00000002     
-                  0000ffe8    00000002     main.obj (.int44)
+                  0000ffe8    00000002     kernel.obj (.int44)
 
 ADC12      0    0000ffea    00000002     
                   0000ffea    00000002     rts430x_lc_rd_eabi.lib : int45.obj (.int45)
@@ -246,22 +246,22 @@ SYSNMI     0    0000fffc    00000002
 .text      0    00010000    000002c6     
                   00010000    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss:__TI_decompress_lzss)
                   00010076    00000070                            : autoinit.obj (.text:__TI_auto_init_nobinit_hold_wdt:__TI_auto_init_nobinit_hold_wdt)
-                  000100e6    00000036     main.obj (.text:_Z4Rtosv)
+                  000100e6    00000036     kernel.obj (.text:_Z4Rtosv)
                   0001011c    00000032     port_drv.obj (.text:_ZN10PortDriver9ConfigureE12PinDirection)
                   0001014e    00000032     main.obj (.text:main)
                   00010180    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
                   000101ac    0000002a     port_drv.obj (.text:_ZN10PortDriver6OutputE9PinOutput)
                   000101d6    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  000101fa    0000001a     main.obj (.text:_Z10timerA_cfgv)
+                  000101fa    0000001a     kernel.obj (.text:_Z10timerA_cfgv)
                   00010214    0000001a     port_drv.obj (.text:_ZN10PortDriverC1E9PinNumber12PinDirection)
                   0001022e    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
                   00010242    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
                   00010254    00000012     rts430x_lc_rd_eabi.lib : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  00010266    0000000e     main.obj (.text:__sti___8_main_cpp_Pin_0)
-                  00010274    0000000c     main.obj (.text:_Z10Task_10_msv)
-                  00010280    0000000c     main.obj (.text:_Z10Task_25_msv)
-                  0001028c    0000000c     main.obj (.text:_Z9Task_1_msv)
-                  00010298    0000000c     main.obj (.text:_Z9Task_5_msv)
+                  00010266    0000000e     kernel.obj (.text:__sti___10_kernel_cpp_Pin_0)
+                  00010274    0000000c     kernel.obj (.text:_Z10Task_10_msv)
+                  00010280    0000000c     kernel.obj (.text:_Z10Task_25_msv)
+                  0001028c    0000000c     kernel.obj (.text:_Z9Task_1_msv)
+                  00010298    0000000c     kernel.obj (.text:_Z9Task_5_msv)
                   000102a4    0000000c     port_drv.obj (.text:_ZN10PortDriver10CurrentPinEv)
                   000102b0    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
                   000102ba    00000006                            : exit.obj (.text:abort)
@@ -272,15 +272,20 @@ MODULE SUMMARY
 
        Module                     code   ro data   rw data
        ------                     ----   -------   -------
+    .\Source\KERNEL\
+       kernel.obj                 172    6         33     
+    +--+--------------------------+------+---------+---------+
+       Total:                     172    6         33     
+                                                          
     .\Source\MCAL\IO_DRIVER\
        port_drv.obj               130    0         0      
     +--+--------------------------+------+---------+---------+
        Total:                     130    0         0      
                                                           
     .\Source\MCAL\PROG_FRAME\
-       main.obj                   222    6         33     
+       main.obj                   50     0         0      
     +--+--------------------------+------+---------+---------+
-       Total:                     222    6         33     
+       Total:                     50     0         0      
                                                           
     .\Source\MCAL\UC_DRIVER\
        watchdog_drv.obj           18     0         0      
@@ -1755,6 +1760,8 @@ address   name
 0000015c  WDTCTL                                    
 0000015d  WDTCTL_H                                  
 0000015c  WDTCTL_L                                  
+000101fa  _Z10timerA_cfgv                           
+000100e6  _Z4Rtosv                                  
 00004420  _Z7Timer_Av                               
 000102a4  _ZN10PortDriver10CurrentPinEv             
 000101ac  _ZN10PortDriver6OutputE9PinOutput         
@@ -1810,7 +1817,7 @@ ffffffff  __c_args__
 00000001  __mpu_enable                              
 00010180  __mpu_init                                
 000102b0  __mspabi_slli                             
-00010266  __sti___8_main_cpp_Pin_0                  
+00010266  __sti___10_kernel_cpp_Pin_0               
 00004400  _c_int00_noargs_mpu                       
 0000fffe  _reset_vector                             
 00002360  _stack                                    
@@ -3280,17 +3287,19 @@ address   name
 0000fffe  _reset_vector                             
 00010000  __TI_decompress_lzss                      
 00010076  __TI_auto_init_nobinit_hold_wdt           
+000100e6  _Z4Rtosv                                  
 0001011c  _ZN10PortDriver9ConfigureE12PinDirection  
 0001014e  main                                      
 00010180  __mpu_init                                
 000101ac  _ZN10PortDriver6OutputE9PinOutput         
 000101d6  __TI_zero_init_nomemset                   
+000101fa  _Z10timerA_cfgv                           
 00010214  _ZN10PortDriverC1E9PinNumber12PinDirection
 00010214  _ZN10PortDriverC2E9PinNumber12PinDirection
 0001022e  memcpy                                    
 00010242  _ZN8WatchDog12StopWatchdogEv              
 00010254  __TI_decompress_none                      
-00010266  __sti___8_main_cpp_Pin_0                  
+00010266  __sti___10_kernel_cpp_Pin_0               
 000102a4  _ZN10PortDriver10CurrentPinEv             
 000102b0  __mspabi_slli                             
 000102ba  C$$EXIT                                   
@@ -3302,4 +3311,4 @@ ffffffff  __TI_prof_data_size
 ffffffff  __TI_prof_data_start                      
 ffffffff  __c_args__                                
 
-[1468 symbols]
+[1470 symbols]
