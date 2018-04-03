@@ -14,8 +14,10 @@ void main(void)
     //UartDrv uart;
     //uart.Init();
 
-    timerA_cfg();
+    Rtos rtos;
 
-    while (1)
-        Rtos();
+    rtos.Init();
+
+    while (true)
+        rtos.Run();
 }
