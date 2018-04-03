@@ -2,6 +2,7 @@
 #include "../UC_DRIVER/watchdog_drv.h"
 #include "../COM_DRIVER/uart_drv.h"
 #include "../../KERNEL/kernel.h"
+#include "../LCD_DRIVER/lcd_drv.h"
 
 void main(void)
 {
@@ -16,8 +17,20 @@ void main(void)
 
     Rtos rtos;
 
+    Init_LCD();
+
+
+
     rtos.Init();
 
     while (true)
+    {
         rtos.Run();
+
+        showChar('1', 9);
+        showChar('9', 5);
+        showChar('1', 3);
+        showChar('C', 7);
+
+    }
 }

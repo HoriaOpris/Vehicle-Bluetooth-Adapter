@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v17.9.0                     
 ******************************************************************************
->> Linked Tue Apr  3 15:16:14 2018
+>> Linked Tue Apr  3 19:37:50 2018
 
 OUTPUT FILE NAME:   <Vehicle-Bluetooth-Adapter.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs_mpu"  address: 00004400
@@ -19,7 +19,7 @@ MEMORY CONFIGURATION
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
   RAM                   00001c00   00000800  000000c1  0000073f  RWIX
-  FRAM                  00004400   0000bb80  0000008c  0000baf4  RWIX
+  FRAM                  00004400   0000bb80  000000e2  0000ba9e  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   IPESIGNATURE          0000ff88   00000008  00000008  00000000  RWIX  ffff 
@@ -79,7 +79,7 @@ MEMORY CONFIGURATION
   INT53                 0000fffa   00000002  00000002  00000000  RWIX
   INT54                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FRAM2                 00010000   00014000  000002b4  00013d4c  RWIX
+  FRAM2                 00010000   00014000  00000530  00013ad0  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -111,12 +111,12 @@ section   page    origin      length       input sections
 .ipe_vars 
 *          0    00004400    00000000     UNINITIALIZED
 
-.cinit     0    0000444a    00000042     
-                  0000444a    0000001f     (.cinit..data.load) [load image, compression = lzss]
-                  00004469    00000001     --HOLE-- [fill = 0]
-                  0000446a    0000000c     (__TI_handler_table)
-                  00004476    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000447c    00000010     (__TI_cinit_table)
+.cinit     0    0000449e    00000044     
+                  0000449e    00000021     (.cinit..data.load) [load image, compression = lzss]
+                  000044bf    00000001     --HOLE-- [fill = 0]
+                  000044c0    0000000c     (__TI_handler_table)
+                  000044cc    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  000044d2    00000010     (__TI_cinit_table)
 
 .binit     0    00004400    00000000     
 
@@ -243,30 +243,48 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    000002b4     
-                  00010000    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00010076    00000070                            : autoinit.obj (.text:__TI_auto_init_nobinit_hold_wdt:__TI_auto_init_nobinit_hold_wdt)
-                  000100e6    0000003e     main.obj (.text:main)
-                  00010124    00000036     kernel.obj (.text:_ZN4Rtos3RunEv)
-                  0001015a    00000032     port_drv.obj (.text:_ZN10PortDriver9ConfigureE12PinDirection)
-                  0001018c    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
-                  000101b8    0000002a     port_drv.obj (.text:_ZN10PortDriver6OutputE9PinOutput)
-                  000101e2    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  00010206    0000001a     port_drv.obj (.text:_ZN10PortDriverC1E9PinNumber12PinDirection)
-                  00010220    0000001a     kernel.obj (.text:_ZN4Rtos4InitEv)
-                  0001023a    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
-                  0001024e    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
-                  00010260    00000012     rts430x_lc_rd_eabi.lib : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  00010272    0000000e     kernel.obj (.text:__sti___10_kernel_cpp_Pin_0)
-                  00010280    0000000c     port_drv.obj (.text:_ZN10PortDriver10CurrentPinEv)
-                  0001028c    0000000c     kernel.obj (.text:_ZN4Rtos10Task_25_msEv)
-                  00010298    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
-                  000102a2    00000006                            : exit.obj (.text:abort)
-                  000102a8    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  000102ac    00000002     kernel.obj (.text:_ZN4Rtos10Task_10_msEv)
-                  000102ae    00000002     kernel.obj (.text:_ZN4Rtos9Task_1_msEv)
-                  000102b0    00000002     kernel.obj (.text:_ZN4Rtos9Task_5_msEv)
-                  000102b2    00000002     rts430x_lc_rd_eabi.lib : startup.obj (.text:_system_post_cinit)
+.const     0    0000444a    00000054     
+                  0000444a    00000034     lcd_drv.obj (.const:alphabetBig)
+                  0000447e    00000014     lcd_drv.obj (.const:digit)
+                  00004492    0000000c     lcd_drv.obj (.const:$P$T0$1)
+
+.text      0    00010000    00000530     
+                  00010000    0000007e     lcd_drv.obj (.text:_Z27LCD_C_setPinAsLCDFunctionExhh)
+                  0001007e    0000007e     lcd_drv.obj (.text:_Z8showCharcj)
+                  000100fc    0000007c     lcd_drv.obj (.text:_Z8Init_LCDv)
+                  00010178    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000101ee    00000072     main.obj (.text:main)
+                  00010260    00000070     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:__TI_auto_init_nobinit_hold_wdt:__TI_auto_init_nobinit_hold_wdt)
+                  000102d0    00000036     kernel.obj (.text:_ZN4Rtos3RunEv)
+                  00010306    00000032     port_drv.obj (.text:_ZN10PortDriver9ConfigureE12PinDirection)
+                  00010338    0000002e     lcd_drv.obj (.text:_Z10LCD_C_initP15LCD_C_initParam)
+                  00010366    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
+                  00010392    0000002a     lcd_drv.obj (.text:_Z19LCD_C_setVLCDSourcejjj)
+                  000103bc    0000002a     port_drv.obj (.text:_ZN10PortDriver6OutputE9PinOutput)
+                  000103e6    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  0001040a    00000020     lcd_drv.obj (.text:_Z14setLCDFunctionhj)
+                  0001042a    0000001a     port_drv.obj (.text:_ZN10PortDriverC1E9PinNumber12PinDirection)
+                  00010444    0000001a     kernel.obj (.text:_ZN4Rtos4InitEv)
+                  0001045e    00000018     lcd_drv.obj (.text:_Z22LCD_C_configChargePumpjj)
+                  00010476    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  0001048a    00000012     watchdog_drv.obj (.text:_ZN8WatchDog12StopWatchdogEv)
+                  0001049c    00000012     rts430x_lc_rd_eabi.lib : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  000104ae    00000010     lcd_drv.obj (.text:_Z20LCD_C_setVLCDVoltagej)
+                  000104be    00000010     lcd_drv.obj (.text:_Z31LCD_C_selectChargePumpReferencej)
+                  000104ce    0000000e     kernel.obj (.text:__sti___10_kernel_cpp_Pin_0)
+                  000104dc    0000000c     port_drv.obj (.text:_ZN10PortDriver10CurrentPinEv)
+                  000104e8    0000000c     kernel.obj (.text:_ZN4Rtos10Task_25_msEv)
+                  000104f4    0000000a     lcd_drv.obj (.text:_Z22LCD_C_enableChargePumpv)
+                  000104fe    0000000a     rts430x_lc_rd_eabi.lib : lsl16.obj (.text)
+                  00010508    0000000a                            : lsr16.obj (.text)
+                  00010512    00000006     lcd_drv.obj (.text:_Z17LCD_C_clearMemoryv)
+                  00010518    00000006     lcd_drv.obj (.text:_Z8LCD_C_onv)
+                  0001051e    00000006     rts430x_lc_rd_eabi.lib : exit.obj (.text:abort)
+                  00010524    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  00010528    00000002     kernel.obj (.text:_ZN4Rtos10Task_10_msEv)
+                  0001052a    00000002     kernel.obj (.text:_ZN4Rtos9Task_1_msEv)
+                  0001052c    00000002     kernel.obj (.text:_ZN4Rtos9Task_5_msEv)
+                  0001052e    00000002     rts430x_lc_rd_eabi.lib : startup.obj (.text:_system_post_cinit)
 
 MODULE SUMMARY
 
@@ -282,10 +300,15 @@ MODULE SUMMARY
     +--+--------------------------+------+---------+---------+
        Total:                     130    0         0      
                                                           
-    .\Source\MCAL\PROG_FRAME\
-       main.obj                   62     0         0      
+    .\Source\MCAL\LCD_DRIVER\
+       lcd_drv.obj                574    84        0      
     +--+--------------------------+------+---------+---------+
-       Total:                     62     0         0      
+       Total:                     574    84        0      
+                                                          
+    .\Source\MCAL\PROG_FRAME\
+       main.obj                   114    0         0      
+    +--+--------------------------+------+---------+---------+
+       Total:                     114    0         0      
                                                           
     .\Source\MCAL\UC_DRIVER\
        watchdog_drv.obj           18     0         0      
@@ -305,6 +328,7 @@ MODULE SUMMARY
        memcpy.obj                 20     0         0      
        copy_decompress_none.obj   18     0         0      
        lsl16.obj                  10     0         0      
+       lsr16.obj                  10     0         0      
        isr_trap.obj               8      0         0      
        exit.obj                   6      0         0      
        pre_init.obj               4      0         0      
@@ -337,24 +361,24 @@ MODULE SUMMARY
        int54.obj                  0      2         0      
        startup.obj                2      0         0      
     +--+--------------------------+------+---------+---------+
-       Total:                     366    56        0      
+       Total:                     376    56        0      
                                                           
        Stack:                     0      0         160    
-       Linker Generated:          0      65        0      
+       Linker Generated:          0      67        0      
     +--+--------------------------+------+---------+---------+
-       Grand Total:               762    127       193    
+       Grand Total:               1398   213       193    
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000447c records: 2, size/record: 8, table size: 16
-	.data: load addr=0000444a, load size=0000001f bytes, run addr=00001c00, run size=00000020 bytes, compression=lzss
-	.bss: load addr=00004476, load size=00000006 bytes, run addr=00001c20, run size=00000001 bytes, compression=zero_init
+__TI_cinit_table @ 000044d2 records: 2, size/record: 8, table size: 16
+	.data: load addr=0000449e, load size=00000021 bytes, run addr=00001c00, run size=00000020 bytes, compression=lzss
+	.bss: load addr=000044cc, load size=00000006 bytes, run addr=00001c20, run size=00000001 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000446a records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 000044c0 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -621,7 +645,7 @@ address   name
 000009ce  AESAXIN_L                                 
 000004be  BCD2BIN                                   
 000004bc  BIN2BCD                                   
-000102a2  C$$EXIT                                   
+0001051e  C$$EXIT                                   
 0000043e  CAPTIO0CTL                                
 0000043f  CAPTIO0CTL_H                              
 0000043e  CAPTIO0CTL_L                              
@@ -1760,31 +1784,33 @@ address   name
 0000015c  WDTCTL                                    
 0000015d  WDTCTL_H                                  
 0000015c  WDTCTL_L                                  
-00010280  _ZN10PortDriver10CurrentPinEv             
-000101b8  _ZN10PortDriver6OutputE9PinOutput         
-0001015a  _ZN10PortDriver9ConfigureE12PinDirection  
-00010206  _ZN10PortDriverC1E9PinNumber12PinDirection
-00010206  _ZN10PortDriverC2E9PinNumber12PinDirection
-000102ac  _ZN4Rtos10Task_10_msEv                    
-0001028c  _ZN4Rtos10Task_25_msEv                    
-00010124  _ZN4Rtos3RunEv                            
-00010220  _ZN4Rtos4InitEv                           
+000100fc  _Z8Init_LCDv                              
+0001007e  _Z8showCharcj                             
+000104dc  _ZN10PortDriver10CurrentPinEv             
+000103bc  _ZN10PortDriver6OutputE9PinOutput         
+00010306  _ZN10PortDriver9ConfigureE12PinDirection  
+0001042a  _ZN10PortDriverC1E9PinNumber12PinDirection
+0001042a  _ZN10PortDriverC2E9PinNumber12PinDirection
+00010528  _ZN4Rtos10Task_10_msEv                    
+000104e8  _ZN4Rtos10Task_25_msEv                    
+000102d0  _ZN4Rtos3RunEv                            
+00010444  _ZN4Rtos4InitEv                           
 00004420  _ZN4Rtos7Timer_AEv                        
-000102ae  _ZN4Rtos9Task_1_msEv                      
-000102b0  _ZN4Rtos9Task_5_msEv                      
-0001024e  _ZN8WatchDog12StopWatchdogEv              
+0001052a  _ZN4Rtos9Task_1_msEv                      
+0001052c  _ZN4Rtos9Task_5_msEv                      
+0001048a  _ZN8WatchDog12StopWatchdogEv              
 00002400  __STACK_END                               
 000000a0  __STACK_SIZE                              
-0000447c  __TI_CINIT_Base                           
-0000448c  __TI_CINIT_Limit                          
-0000446a  __TI_Handler_Table_Base                   
-00004476  __TI_Handler_Table_Limit                  
+000044d2  __TI_CINIT_Base                           
+000044e2  __TI_CINIT_Limit                          
+000044c0  __TI_Handler_Table_Base                   
+000044cc  __TI_Handler_Table_Limit                  
 00004446  __TI_INITARRAY_Base                       
 0000444a  __TI_INITARRAY_Limit                      
 0000443e  __TI_ISR_TRAP                             
-00010076  __TI_auto_init_nobinit_hold_wdt           
-00010000  __TI_decompress_lzss                      
-00010260  __TI_decompress_none                      
+00010260  __TI_auto_init_nobinit_hold_wdt           
+00010178  __TI_decompress_lzss                      
+0001049c  __TI_decompress_none                      
 0000ffc6  __TI_int27                                
 0000ffc8  __TI_int28                                
 0000ffca  __TI_int29                                
@@ -1816,24 +1842,25 @@ address   name
 ffffffff  __TI_pprof_out_hndl                       
 ffffffff  __TI_prof_data_size                       
 ffffffff  __TI_prof_data_start                      
-000101e2  __TI_zero_init_nomemset                   
+000103e6  __TI_zero_init_nomemset                   
 ffffffff  __c_args__                                
 00000001  __mpu_enable                              
-0001018c  __mpu_init                                
-00010298  __mspabi_slli                             
-00010272  __sti___10_kernel_cpp_Pin_0               
+00010366  __mpu_init                                
+000104fe  __mspabi_slli                             
+00010508  __mspabi_srli                             
+000104ce  __sti___10_kernel_cpp_Pin_0               
 00004400  _c_int00_noargs_mpu                       
 0000fffe  _reset_vector                             
 00002360  _stack                                    
-000102b2  _system_post_cinit                        
-000102a8  _system_pre_init                          
-000102a2  abort                                     
+0001052e  _system_post_cinit                        
+00010524  _system_pre_init                          
+0001051e  abort                                     
 00004400  fram_ipe_end                              
 00004400  fram_ipe_start                            
 00004400  fram_rw_start                             
 00004400  fram_rx_start                             
-000100e6  main                                      
-0001023a  memcpy                                    
+000101ee  main                                      
+00010476  memcpy                                    
 0000a501  mpu_ctl0_value                            
 00001513  mpu_sam_value                             
 00000440  mpu_segment_border1                       
@@ -3255,10 +3282,10 @@ address   name
 0000443e  __TI_ISR_TRAP                             
 00004446  __TI_INITARRAY_Base                       
 0000444a  __TI_INITARRAY_Limit                      
-0000446a  __TI_Handler_Table_Base                   
-00004476  __TI_Handler_Table_Limit                  
-0000447c  __TI_CINIT_Base                           
-0000448c  __TI_CINIT_Limit                          
+000044c0  __TI_Handler_Table_Base                   
+000044cc  __TI_Handler_Table_Limit                  
+000044d2  __TI_CINIT_Base                           
+000044e2  __TI_CINIT_Limit                          
 0000a501  mpu_ctl0_value                            
 0000ffc6  __TI_int27                                
 0000ffc8  __TI_int28                                
@@ -3289,34 +3316,37 @@ address   name
 0000fffa  __TI_int53                                
 0000fffc  __TI_int54                                
 0000fffe  _reset_vector                             
-00010000  __TI_decompress_lzss                      
-00010076  __TI_auto_init_nobinit_hold_wdt           
-000100e6  main                                      
-00010124  _ZN4Rtos3RunEv                            
-0001015a  _ZN10PortDriver9ConfigureE12PinDirection  
-0001018c  __mpu_init                                
-000101b8  _ZN10PortDriver6OutputE9PinOutput         
-000101e2  __TI_zero_init_nomemset                   
-00010206  _ZN10PortDriverC1E9PinNumber12PinDirection
-00010206  _ZN10PortDriverC2E9PinNumber12PinDirection
-00010220  _ZN4Rtos4InitEv                           
-0001023a  memcpy                                    
-0001024e  _ZN8WatchDog12StopWatchdogEv              
-00010260  __TI_decompress_none                      
-00010272  __sti___10_kernel_cpp_Pin_0               
-00010280  _ZN10PortDriver10CurrentPinEv             
-0001028c  _ZN4Rtos10Task_25_msEv                    
-00010298  __mspabi_slli                             
-000102a2  C$$EXIT                                   
-000102a2  abort                                     
-000102a8  _system_pre_init                          
-000102ac  _ZN4Rtos10Task_10_msEv                    
-000102ae  _ZN4Rtos9Task_1_msEv                      
-000102b0  _ZN4Rtos9Task_5_msEv                      
-000102b2  _system_post_cinit                        
+0001007e  _Z8showCharcj                             
+000100fc  _Z8Init_LCDv                              
+00010178  __TI_decompress_lzss                      
+000101ee  main                                      
+00010260  __TI_auto_init_nobinit_hold_wdt           
+000102d0  _ZN4Rtos3RunEv                            
+00010306  _ZN10PortDriver9ConfigureE12PinDirection  
+00010366  __mpu_init                                
+000103bc  _ZN10PortDriver6OutputE9PinOutput         
+000103e6  __TI_zero_init_nomemset                   
+0001042a  _ZN10PortDriverC1E9PinNumber12PinDirection
+0001042a  _ZN10PortDriverC2E9PinNumber12PinDirection
+00010444  _ZN4Rtos4InitEv                           
+00010476  memcpy                                    
+0001048a  _ZN8WatchDog12StopWatchdogEv              
+0001049c  __TI_decompress_none                      
+000104ce  __sti___10_kernel_cpp_Pin_0               
+000104dc  _ZN10PortDriver10CurrentPinEv             
+000104e8  _ZN4Rtos10Task_25_msEv                    
+000104fe  __mspabi_slli                             
+00010508  __mspabi_srli                             
+0001051e  C$$EXIT                                   
+0001051e  abort                                     
+00010524  _system_pre_init                          
+00010528  _ZN4Rtos10Task_10_msEv                    
+0001052a  _ZN4Rtos9Task_1_msEv                      
+0001052c  _ZN4Rtos9Task_5_msEv                      
+0001052e  _system_post_cinit                        
 ffffffff  __TI_pprof_out_hndl                       
 ffffffff  __TI_prof_data_size                       
 ffffffff  __TI_prof_data_start                      
 ffffffff  __c_args__                                
 
-[1474 symbols]
+[1477 symbols]
