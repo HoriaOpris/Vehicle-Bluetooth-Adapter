@@ -115,6 +115,7 @@ SUBDIRS := \
 Source/APP/LED_APP \
 Source/KERNEL \
 Source/MCAL/COM_DRIVER \
+Source/MCAL/GPT_DRV \
 Source/MCAL/IO_DRIVER \
 Source/MCAL/LCD_DRIVER \
 Source/MCAL/PROG_FRAME \

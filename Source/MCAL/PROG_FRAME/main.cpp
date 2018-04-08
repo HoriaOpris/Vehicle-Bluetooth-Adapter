@@ -30,21 +30,11 @@ void main(void)
     P1SEL0 |= BIT3;
     P1SEL1 &= ~BIT3;
 
-    TA1CCR0 = 200;
-    TA1CCTL2 |= OUTMOD_7;
-    TA1CCR2 = 100;
-    TA1CTL = TASSEL__SMCLK | MC__UP;
-
-//    P1DIR |= BIT3;
-//    P1OUT |= BIT3;
-
-
     while (true)
     {
         rtos.Run();
 
         TA1CCR2 = x;
-
 
         showChar('1', 9);
         showChar('9', 5);
