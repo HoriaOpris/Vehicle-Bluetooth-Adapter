@@ -1,12 +1,11 @@
 #include "led_app.h"
-#include "../../MCAL/GPT_DRV/gpt_drv.h"
+#include "../../MCAL/PWM_DRIVER/pwm_drv.h"
 
-int x = 0;
+static PwmDriver pwm;
 
 LedApp::LedApp(void)
 {
-    GptDriver timer;
-    timer.Configure();
+    pwm.Configure();
 
     flag = false;
 
@@ -14,11 +13,13 @@ LedApp::LedApp(void)
 
 void LedApp::Run(void)
 {
+    static unsigned duty = 0;
+
     if (flag)
     {
-        if (x < 100)
+        if (duty < 100)
         {
-            x += 10;
+            duty += 10;
         }
         else
         {
@@ -27,13 +28,16 @@ void LedApp::Run(void)
     }
     else
     {
-        if (x > 10)
+        if (duty > 10)
         {
-            x -= 10;
+            duty -= 10;
         }
         else
         {
             flag = true;
         }
     }
+
+    pwm.DutyCycle(duty);
+
 }

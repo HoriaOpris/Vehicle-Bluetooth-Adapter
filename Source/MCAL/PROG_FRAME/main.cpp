@@ -14,27 +14,17 @@ void main(void)
     watchdog.StopWatchdog();
 
     PortDriver Pin_2(PIN_2, DIR_INPUT);
-//    PortDriver Pin_6(PIN_6, DIR_OUTPUT);
+    Init_LCD();
 
 //UartDrv uart;
 //uart.Init();
 
     Rtos rtos;
-
-    Init_LCD();
-
     rtos.Init();
-
-    P1DIR |= BIT3;
-    P1SEL0 &= ~BIT3;
-    P1SEL0 |= BIT3;
-    P1SEL1 &= ~BIT3;
 
     while (true)
     {
         rtos.Run();
-
-        TA1CCR2 = x;
 
         showChar('1', 9);
         showChar('9', 5);
