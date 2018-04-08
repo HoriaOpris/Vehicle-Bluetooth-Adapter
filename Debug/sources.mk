@@ -112,6 +112,7 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+Source/APP/LED_APP \
 Source/KERNEL \
 Source/MCAL/COM_DRIVER \
 Source/MCAL/IO_DRIVER \

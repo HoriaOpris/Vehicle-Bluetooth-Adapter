@@ -8,10 +8,8 @@
 #include "kernel.h"
 #include "../MCAL/IO_DRIVER/port_drv.h"
 #include <msp430.h>
+#include "../APP/LED_APP/led_app.h"
 
-int x = 0;
-
-PortDriver Pin_0(PIN_0, DIR_OUTPUT);
 static struct RTOS rtos[TASK_TOTAL] = { { 0, 1, Rtos::Task_1_ms }, { 0, 5,
         Rtos::Task_5_ms }, { 0, 10, Rtos::Task_10_ms }, { 0, 25,
         Rtos::Task_25_ms } };
@@ -43,7 +41,9 @@ void Rtos::Init(void)
 
 void Rtos::Task_1_ms(void)
 {
-//    Pin_0.Output(OUT_TOGGLE);
+    static PortDriver Pin_0(PIN_0, DIR_OUTPUT);
+
+    Pin_0.Output(OUT_TOGGLE);
 }
 
 void Rtos::Task_5_ms(void)
@@ -58,14 +58,9 @@ void Rtos::Task_10_ms(void)
 
 void Rtos::Task_25_ms(void)
 {
-  if(x < 200)
-  {
-      x++;
-  }
-  else
-  {
-      x = 0;
-  }
+    static LedApp led;
+
+    led.Run();
 }
 
 #pragma vector=TIMER0_A0_VECTOR
